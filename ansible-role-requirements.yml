@@ -18,6 +18,10 @@
   scm: git
   src: https://github.com/openstack/openstack-ansible-os_octavia.git
   version: master
+- name: os_designate
+  scm: git
+  src: https://github.com/openstack/openstack-ansible-os_designate.git
+  version: master
 # TODO(odyssey4me):
 # Remove this override once https://review.openstack.org/485592 merges
 # and is included in the RPC-O SHA bump.
@@ -31,3 +35,9 @@
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-lxc_hosts
   version: 676a0b586565976715093f4360b712f83b1ba4a7
+# Include the Designate Role
+- name: os_designate
+  scm: git
+  src: https://github.com/leader716/openstack-ansible-os_designate.git
+  version: stable/newton
+  

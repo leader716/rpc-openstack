@@ -39,6 +39,7 @@ export DEPLOY_RPC=${DEPLOY_RPC:-"yes"}
 export DEPLOY_ARA=${DEPLOY_ARA:-"no"}
 export BOOTSTRAP_OPTS=${BOOTSTRAP_OPTS:-""}
 export UNAUTHENTICATED_APT=${UNAUTHENTICATED_APT:-no}
+export DEPLOY_DESIGNATE=${DEPLOY_DESIGNATE:-"no"}
 
 export BASE_DIR=${BASE_DIR:-"/opt/rpc-openstack"}
 export OA_DIR="${BASE_DIR}/openstack-ansible"
@@ -90,11 +91,11 @@ function apt_artifacts_available {
 
   CHECK_URL="${HOST_RCBOPS_REPO}/apt-mirror/integrated/dists/${RPC_RELEASE}-${DISTRIB_CODENAME}"
 
-  if curl --output /dev/null --silent --head --fail ${CHECK_URL}; then
-    return 0
-  else
-    return 1
-  fi
+#  if curl --output /dev/null --silent --head --fail ${CHECK_URL}; then
+#    return 0
+#  else
+   return 1
+#  fi
 
 }
 

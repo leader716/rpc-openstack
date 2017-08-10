@@ -121,6 +121,7 @@ DEPLOY_TEMPEST     | no                                 | Deploy Tempest        
 DEPLOY_RALLY       | no                                 | Deploy Rally                                         | Only used if DEPLOY_OA=yes
 DEPLOY_CEPH        | no                                 | Deploy Ceph                                          | Only used if DEPLOY_OA=yes
 DEPLOY_SWIFT       | yes                                | Deploy swift                                         |
+DEPLOY_DESIGNATE   | no                                 | Deploy Designate                                     | 
 DEPLOY_HARDENING   | yes                                | Deploy openstack-ansible-security role               |
 DEPLOY_RPC         | yes                                | Deploy the RPCO specific variables                   |
 BOOTSTRAP_OPTS     |                                    | Any options used for the bootstrap process           | Only used if DEPLOY_AIO=yes
