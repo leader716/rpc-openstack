@@ -21,3 +21,7 @@
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-plugins
   version: 782460644902f391cadb83e61c882956c0e569ee
+- name: os_designate
+  scm: git
+  src: https://github.com/openstack/openstack-ansible-os_designate.git
+  version: master

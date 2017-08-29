@@ -65,6 +65,10 @@ if [[ ! -f /etc/openstack_deploy/user_osa_secrets.yml ]] && [[ -f /etc/openstack
   mv /etc/openstack_deploy/user_secrets.yml /etc/openstack_deploy/user_osa_secrets.yml
 fi
 
+if [[ "${DEPLOY_DESIGNATE}" == "yes" ]]; then
+  run_ansible ${BASE_DIR}/contrib/designate/setup_designate.yml
+fi
+
 # update the RPC-O secrets
 bash ${BASE_DIR}/scripts/update-secrets.sh
 
@@ -132,6 +136,9 @@ if [[ "${DEPLOY_OA}" == "yes" ]]; then
     run_ansible os-tempest-install.yml
   fi
 
+  if [[ "${DEPLOY_DESIGNATE}" == "yes" ]]; then
+    run_ansible ${BASE_DIR}/contrib/designate/os_designate.yml
+  fi 
 fi
 
 if [[ "${DEPLOY_RPC}" == "yes" ]]; then

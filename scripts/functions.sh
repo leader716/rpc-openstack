@@ -36,6 +36,7 @@ export DEPLOY_RPC=${DEPLOY_RPC:-"yes"}
 export DEPLOY_ARA=${DEPLOY_ARA:-"no"}
 export BOOTSTRAP_OPTS=${BOOTSTRAP_OPTS:-""}
 export UNAUTHENTICATED_APT=${UNAUTHENTICATED_APT:-no}
+export DEPLOY_DESIGNATE=${DEPLOY_DESIGNATE:-"no"}
 
 export BASE_DIR=${BASE_DIR:-"/opt/rpc-openstack"}
 export OA_DIR="${BASE_DIR}/openstack-ansible"
