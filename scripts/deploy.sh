@@ -151,6 +151,10 @@ if [[ "${DEPLOY_OA}" == "yes" ]]; then
   # setup openstack
   run_ansible setup-openstack.yml
 
+  if [[ "${DEPLOY_DESIGNATE}" == "yes" ]]; then
+    run_ansible os-designate-install.yml
+  fi
+
   if [[ "${DEPLOY_TEMPEST}" == "yes" ]]; then
     # Deploy tempest
     run_ansible ${BASE_DIR}/scripts/run_tempest.yml
