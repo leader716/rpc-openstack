@@ -1,0 +1,38 @@
+---
+- name: Install Designate Server
+  hosts: designate_all
+  user: root
+  pre_tasks:
+    - include: /opt/rpc-openstack/openstack-ansible/playbooks/common-tasks/os-lxc-container-setup.yml
+    - include: /opt/rpc-openstack/openstack-ansible/playbooks/common-tasks/rabbitmq-vhost-user.yml
+      static: no
+      vars:
+        user: "{{ designate_rabbitmq_userid }}"
+        password: "{{ designate_rabbitmq_password }}"
+        vhost: "{{ designate_rabbitmq_vhost }}"
+        _rabbitmq_host_group: "{{ designate_rabbitmq_host_group }}"
+      when:
+        - inventory_hostname == groups['designate_all'][0]
+        - groups[designate_rabbitmq_host_group] | length > 0
+    - include: /opt/rpc-openstack/openstack-ansible/playbooks/common-tasks/mysql-db-user.yml
+      static: no
+      vars:
+        user_name: "{{ designate_galera_user }}"
+        password: "{{ designate_galera_password }}"
+        login_host: "{{ designate_galera_address }}"
+        db_name: "{{ designate_galera_database_name }}"
+      when: inventory_hostname == groups['designate_all'][0]
+  roles:
+    - { role: "os_designate", tags: [ "os-designate" ] }
+    - { role: "openstack_openrc", tags: [ "openrc" ] }
+    - role: "rsyslog_client"
+      rsyslog_client_log_rotate_file: designate_log_rotate
+      rsyslog_client_log_dir: "/var/log/designate"
+      rsyslog_client_config_name: "99-designate-rsyslog-client.conf"
+      tags:
+        - rsyslog
+  vars:
+    is_metal: "{{ properties.is_metal|default(false) }}"
+  tags:
+    - "designate"
+     

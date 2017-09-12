@@ -34,6 +34,7 @@ export DEPLOY_CEPH=${DEPLOY_CEPH:-"no"}
 export DEPLOY_SWIFT=${DEPLOY_SWIFT:-"yes"}
 export DEPLOY_SUPPORT_ROLE=${DEPLOY_SUPPORT_ROLE:-"no"}
 export DEPLOY_MAGNUM=${DEPLOY_MAGNUM:-"no"}
+export DEPLOY_DESIGNATE=${DEPLOY_DESIGNATE:-"no"}
 export DEPLOY_HARDENING=${DEPLOY_HARDENING:-"yes"}
 export DEPLOY_RPC=${DEPLOY_RPC:-"yes"}
 export DEPLOY_ARA=${DEPLOY_ARA:-"no"}
@@ -124,6 +125,10 @@ function apt_artifacts_available {
 function git_artifacts_available {
 
   CHECK_URL="${HOST_RCBOPS_REPO}/git-archives/${RPC_RELEASE}/requirements.checksum"
+
+  if [[ ${DEPLOY_DESIGNATE} == 'yes' ]]; then
+    return 1
+  fi 
 
   if curl --output /dev/null --silent --head --fail ${CHECK_URL}; then
     return 0

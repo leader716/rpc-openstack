@@ -128,6 +128,8 @@
           condition: "{{ rpco_deploy_elk | bool }}"
         - name: "env.d/logstash.yml"
           condition: "{{ rpco_deploy_elk | bool }}"
+        - name: "env.d/designate.yml"
+          condition: "{{ rpco_deploy_designate | bool }}"
 
     - name: Template the RPC-O config files
       config_template:
@@ -172,3 +174,4 @@
     rpco_deploy_ceph: "{{ lookup('env', 'DEPLOY_CEPH') }}"
     rpco_deploy_elk: "{{ lookup('env', 'DEPLOY_ELK') }}"
     rpco_deploy_swift: "{{ lookup('env', 'DEPLOY_SWIFT') }}"
+    rpco_deploy_designate: "{{ lookup('env', 'DEPLOY_DESIGNATE') }}"

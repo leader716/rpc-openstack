@@ -65,6 +65,10 @@ if [[ ! -f /etc/openstack_deploy/user_osa_secrets.yml ]] && [[ -f /etc/openstack
   mv /etc/openstack_deploy/user_secrets.yml /etc/openstack_deploy/user_osa_secrets.yml
 fi
 
+#if [[ "${DEPLOY_DESIGNATE}" == "yes" ]]; then
+#  run_ansible ${BASE_DIR}/contrib/designate/setup_designate.yml
+#fi
+
 if [[ "${DEPLOY_MAGNUM}" == "yes" ]]; then
   run_ansible ${BASE_DIR}/contrib/magnum/magnum_playbook.yml
   run_ansible ${BASE_DIR}/contrib/octavia/playbook.yml
@@ -158,6 +162,10 @@ if [[ "${DEPLOY_OA}" == "yes" ]]; then
 
   # setup openstack
   run_ansible setup-openstack.yml
+
+  if [[ "${DEPLOY_DESIGNATE}" == "yes" ]]; then
+    run_ansible ${BASE_DIR}/contrib/designate/os_designate.yml
+  fi
 
   if [[ "${DEPLOY_TEMPEST}" == "yes" ]]; then
     # Deploy tempest

@@ -120,3 +120,14 @@ haproxy_extra_services:
       haproxy_balance_type: tcp
       haproxy_backend_options:
         - "ssl-hello-chk"
+# Add port for designate service
+  - service:
+      haproxy_service_name: designate
+      haproxy_backend_nodes: "{{ groups['designate'] | default([]) }}"
+      haproxy_ssl: False
+      haproxy_port: 9001
+      haproxy_balance_type: http
+      haproxy_backend_options:
+        - "httpchk /healthcheck"
+
+

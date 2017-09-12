@@ -72,3 +72,7 @@
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_nova
   version: 91677876e5cf5de7305437d4dcffe4263f0701c5
+- name: os_designate
+  scm: git
+  src: https://github.com/leader716/openstack-ansible-os_designate
+  version: stable/newton
